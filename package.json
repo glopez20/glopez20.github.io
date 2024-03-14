@@ -1,0 +1,12 @@
+{
+  "name": "rubrica-gestion-procesos",
+  "version": "1.0.0",
+  "description": "Desarrollo de la rúbrica \"PROYECTO DE AULA\" de la asignatura \"PLATAFORMA DE HARDWARE Y SOFTWARE LIBRE PRESENCIAL 79969\"",
+  "main": "index.js",
+  "repository": "git@github.com-cuc:glopez20/rubrica-gestion-procesos.git",
+  "author": "Gian López <glopez20@cuc.edu.co>",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

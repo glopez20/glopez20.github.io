@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gesti&oacute;n de procesos by @glopez20</title>
+    <link rel="stylesheet" type="text/css" href="./public/css/output.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.cuc.edu.co/wp-content/uploads/2022/06/cropped-faviconV2-1-32x32.png"
+    />
+  </head>
+  <body class="p-4">
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-2xl font-bold">
+          Simulaci&oacute;n de gesti&oacute;n de procesos
+        </h1>
+        <p>Presentado por <i>Gian L&oacute;pez</i></p>
+      </div>
+      <img
+        src="https://www.cuc.edu.co/wp-content/uploads/2021/07/logo1cuc.png"
+        alt="Logo de la universidad"
+        width="150"
+      />
+    </div>
+    <main class="mt-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-lg font-semibold text-gray-500">Cola de procesos</p>
+          <p>Total: <span id="total">0</span></p>
+        </div>
+        <button
+          class="modal__action--show bg-blue-600 text-white px-4 py-2 rounded-md"
+        >
+          Nuevo
+        </button>
+      </div>
+      <div id="process-list" class="flex gap-2 bg-gray-100 rounded-md mt-3 p-3">
+        <p id="process-empty" class="flex-1 text-center py-2">
+          No hay procesos registrados
+        </p>
+      </div>
+    </main>
+  </body>
+  <div class="modal relative z-10 pointer-events-none" role="dialog">
+    <div
+      class="modal__backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0"
+    ></div>
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div
+        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+      >
+        <div
+          class="modal__panel relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+          <div class="bg-white p-6 pb-2">
+            <h1 class="font-bold text-lg">Nuevo proceso</h1>
+            <p class="text-gray-500 text-sm">Rellena el siguiente formulario</p>
+            <form id="process-form" class="mt-4">
+              <div class="flex items-center mb-3">
+                <input
+                  type="text"
+                  id="id"
+                  name="id"
+                  placeholder="#"
+                  class="py-2 px-3 ring-1 ring-gray-300 rounded-md w-1/6 mr-3 text-center"
+                  required
+                />
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Nombre"
+                  class="py-2 px-3 ring-1 ring-gray-300 rounded-md w-full"
+                  required
+                />
+              </div>
+              <input
+                type="text"
+                id="tiempo_ejecucion"
+                name="tiempo_ejecucion"
+                placeholder="Tiempo de ejecución (segundos)"
+                class="py-2 px-3 ring-1 ring-gray-300 rounded-md w-full mb-3"
+                required
+              />
+            </form>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button
+              type="submit"
+              form="process-form"
+              class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
+            >
+              Guardar
+            </button>
+            <button
+              type="button"
+              class="modal__action--hide mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="process"
+    class="flex items-center justify-center w-[80px] h-[80px] bg-blue-600 rounded-md invisible"
+  >
+    <svg
+      width="52px"
+      height="52px"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="animate-spin"
+    >
+      <path
+        d="M11 3H13C13.5523 3 14 3.44772 14 4V4.56879C14 4.99659 14.2871 5.36825 14.6822 5.53228C15.0775 5.69638 15.5377 5.63384 15.8403 5.33123L16.2426 4.92891C16.6331 4.53838 17.2663 4.53838 17.6568 4.92891L19.071 6.34312C19.4616 6.73365 19.4615 7.36681 19.071 7.75734L18.6688 8.1596C18.3661 8.46223 18.3036 8.92247 18.4677 9.31774C18.6317 9.71287 19.0034 10 19.4313 10L20 10C20.5523 10 21 10.4477 21 11V13C21 13.5523 20.5523 14 20 14H19.4312C19.0034 14 18.6318 14.2871 18.4677 14.6822C18.3036 15.0775 18.3661 15.5377 18.6688 15.8403L19.071 16.2426C19.4616 16.6331 19.4616 17.2663 19.071 17.6568L17.6568 19.071C17.2663 19.4616 16.6331 19.4616 16.2426 19.071L15.8403 18.6688C15.5377 18.3661 15.0775 18.3036 14.6822 18.4677C14.2871 18.6318 14 19.0034 14 19.4312V20C14 20.5523 13.5523 21 13 21H11C10.4477 21 10 20.5523 10 20V19.4313C10 19.0034 9.71287 18.6317 9.31774 18.4677C8.92247 18.3036 8.46223 18.3661 8.1596 18.6688L7.75732 19.071C7.36679 19.4616 6.73363 19.4616 6.34311 19.071L4.92889 17.6568C4.53837 17.2663 4.53837 16.6331 4.92889 16.2426L5.33123 15.8403C5.63384 15.5377 5.69638 15.0775 5.53228 14.6822C5.36825 14.2871 4.99659 14 4.56879 14H4C3.44772 14 3 13.5523 3 13V11C3 10.4477 3.44772 10 4 10L4.56877 10C4.99658 10 5.36825 9.71288 5.53229 9.31776C5.6964 8.9225 5.63386 8.46229 5.33123 8.15966L4.92891 7.75734C4.53838 7.36681 4.53838 6.73365 4.92891 6.34313L6.34312 4.92891C6.73365 4.53839 7.36681 4.53839 7.75734 4.92891L8.15966 5.33123C8.46228 5.63386 8.9225 5.6964 9.31776 5.53229C9.71288 5.36825 10 4.99658 10 4.56876V4C10 3.44772 10.4477 3 11 3Z"
+        stroke="#ffffff"
+        stroke-width="1.5"
+      />
+      <path
+        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+        stroke="#ffffff"
+        stroke-width="1.5"
+      />
+    </svg>
+  </div>
+  <script src="./public/js/lib/jquery-3.7.1.min.js"></script>
+  <script src="./public/js/dialogs.js"></script>
+  <script src="./public/js/index.js"></script>
+</html>
