@@ -1,9 +1,9 @@
-const $modal = $(".modal");
-const $modalBackdrop = $(".modal__backdrop");
-const $modalPanel = $(".modal__panel");
+const $modal = $("div#new-process-modal");
+const $modalBackdrop = $("div#new-process-modal-backdrop");
+const $modalPanel = $("div#new-process-modal-panel");
 
-const $modalActionShow = $(".modal__action--show");
-const $modalActionHide = $(".modal__action--hide");
+const $modalActionShow = $("button#new-process-modal-show");
+const $modalActionHide = $("button#new-process-modal-hide");
 
 function toggleDialog() {
   $modal.toggleClass("pointer-events-none");
